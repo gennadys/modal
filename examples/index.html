@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modal window examples</title>
+  <meta charset="utf-8">
+  <link href="reset.css" media="screen" rel="stylesheet">
+  <link href="../modal.css" media="screen" rel="stylesheet">
+  <style>
+    body > div { margin: 0 auto; padding: 20px; width: 760px; }
+  </style>
+</head>
+<body>
+  <div>
+    <p>Lorem ipsum dolor sit <a class="demo1" href="#">demo 1</a> amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="../modal.js"></script>
+  <script>
+    $('a.demo1').modal({ content: '<h1>Lorem ipsum dolor sit amet.</h1> Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a class="modal-close" href="./">Close window</a>' });
+  </script>
+</body>
+</html>

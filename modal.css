@@ -1,0 +1,50 @@
+div.modal-overlay { position: fixed; top: 0; left: 0; z-index: 100; width: 100%; height: 100%; background-color: #fff; }
+
+table.modal { position: absolute; top: 0; left: 0; z-index: 100; width: 100%; height: 100%; }
+table.modal-scrollable { position: fixed; }
+table.modal td.modal { vertical-align: middle; }
+table.modal table.modal-wrapper { margin: 0 auto; }
+
+div.modal { position: absolute; z-index: 100; }
+div.modal-window div.modal-tools { position: relative; z-index: 1; }
+div.modal-window div.modal-tools a.modal-close { position: absolute; top: 0; right: 0; z-index: 1; }
+
+/* default skin */
+.modal.default div.modal-window > div {
+  border: 2px solid #333;
+  padding: 10px;
+  max-width: 400px;
+  background: #FFF;
+  
+  -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+.modal.default div.modal-tools a.modal-close {
+  display: block;
+  width: 16px; height: 16px;
+  background: url(icons.png) no-repeat 0 0;
+  text-indent: -9999px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.modal.default div.modal-tools a.modal-close:hover { background-position: 0 -30px; }
+.modal.default h1 {
+  margin-bottom: 12px; padding-bottom: 5px;
+  border-bottom: 2px solid #333;
+  font-size: 18px; font-weight: bold;
+  
+  -webkit-box-shadow: 0 1px 0 #FFF, 0 2px 0 #333;
+  -moz-box-shadow: 0 1px 0 #FFF, 0 2px 0 #333;
+  box-shadow: 0 1px 0 #FFF, 0 2px 0 #333;
+}
+
+table.modal.default div.modal-tools a.modal-close { top: 3px; }
+  
+div.modal.default a.modal-close { top: -10px; right: -10px; }  
+div.modal.default div.modal-window > div { padding: 12px; }
+div.modal.default div.modal-spacer { display: block; position: absolute; z-index: 1; background: url(triangle.png) no-repeat 9999px 9999px; }
+
+div.modal.default.modal-ne div.modal-window { padding-top: 14px; }
+div.modal.default.modal-ne div.modal-spacer { margin-right: -11px; width: 23px; height: 16px; background-position: 50% 0; }
