@@ -38,7 +38,6 @@
     },
     
     position: function() {
-      // TODO Add functionality for all ways
       var $opener = $(this.opener),
           $parent = $opener.parent(),
           pos     = {},
@@ -46,20 +45,24 @@
                       width: $opener.outerWidth(),
                       height: Math.min($parent.height(), $opener.outerHeight())
                     }),
-          modal   = { width: this.$modal.outerWidth(), height: this.$modal.outerHeight() };
+          modal   = {};
+          
+      this.$modal.addClass('modal-' + this.gravity);
+      
+      modal = { width: this.$modal.outerWidth(), height: this.$modal.outerHeight() };
       
       if (this.gravity) {
         switch (this.gravity.charAt(0)) {
-          case 'n':
+          case 's':
             pos = { top: opener.top + opener.height, left: opener.left + opener.width / 2 - modal.width / 2 };
             break;
-          case 's':
-            pos = { top: opener.top, left: opener.left + opener.width / 2 };
-            break;
-          case 'e':
-            pos = { top: opener.top + opener.height / 2, left: opener.left };
+          case 'n':
+            pos = { top: opener.top - modal.height, left: opener.left + opener.width / 2 - modal.width / 2 };
             break;
           case 'w':
+            pos = { top: opener.top + opener.height / 2 - modal.height / 2, left: opener.left - modal.width };
+            break;
+          case 'e':
             pos = { top: opener.top + opener.height / 2 - modal.height / 2, left: opener.left + opener.width };
             break;
           }
@@ -67,14 +70,16 @@
         if (this.gravity.length == 2) {
             if (this.gravity.charAt(1) == 'w') {
                 pos.left = opener.left;
+                
+                this.$modal.find('div.modal-spacer').css({ left: opener.width / 2 });
             } else {
                 pos.left = opener.left + opener.width - modal.width;
                 
-                this.$modal.find('div.modal-spacer').css({ right: opener.width/2 });
+                this.$modal.find('div.modal-spacer').css({ right: opener.width / 2 });
             }
         }
 
-        this.$modal.css(pos).addClass('modal-' + this.gravity);
+        this.$modal.css(pos);
       }
     },
 
@@ -151,7 +156,7 @@
             self.remove();
           }
         };
-        $(document).bind('click.modal', self.docevnt);
+        $(document).on('click.modal', self.docevnt);
       }
 
       if (self.url && self.remote) {
@@ -179,7 +184,7 @@
 
     remove: function() {
       this.$modal.remove();
-      this.$overlay.remove();
+      if (this.$overlay) this.$overlay.remove();
 
       $(this.opener).removeClass('modal-active');
       
@@ -196,22 +201,25 @@
   };
 
   $.fn.modal = function(options) {
-    var self = this;
+    this.each(function(){
+      var self = this;
     
-    $(document).on('click.modal', self, function(event) {
-      if (self[0] === event.target) {
-        var $this = $(event.target),
-            modal = $this.data('modal');
+      $(document).on('click.modal', self, function(event) {
+        if (event.target === self) {
+          var $this = $(event.target),
+              modal = $this.data('modal');
       
-        if (!modal) {
-          modal = $.extend({}, defaults, methods, options);
-          $this.data('modal', modal);
-        }
+          if (!modal) {
+            modal = $.extend({}, defaults, methods, options);
+            $this.data('modal', modal);
+          }
       
-        modal.init(event.target);
+          modal.init(event.target);
 
-        event.preventDefault();
-      }
+          event.stopPropagation();
+          event.preventDefault();
+        }
+      });
     });
     
     return this;

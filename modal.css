@@ -46,5 +46,32 @@ div.modal.default a.modal-close { top: -10px; right: -10px; }
 div.modal.default div.modal-window > div { padding: 12px; }
 div.modal.default div.modal-spacer { display: block; position: absolute; z-index: 1; background: url(triangle.png) no-repeat 9999px 9999px; }
 
-div.modal.default.modal-ne div.modal-window { padding-top: 14px; }
-div.modal.default.modal-ne div.modal-spacer { margin-right: -11px; width: 23px; height: 16px; background-position: 50% 0; }
+/* gravity */
+div.modal.default.modal-s div.modal-window,
+div.modal.default.modal-sw div.modal-window,
+div.modal.default.modal-se div.modal-window { padding-top: 14px; }
+div.modal.default.modal-s div.modal-spacer,
+div.modal.default.modal-sw div.modal-spacer,
+div.modal.default.modal-se div.modal-spacer { width: 23px; height: 16px; background-position: 50% 0; }
+div.modal.default.modal-se div.modal-spacer { margin-right: -11px; }
+div.modal.default.modal-sw div.modal-spacer { margin-left: -11px; }
+div.modal.default.modal-s div.modal-spacer { margin-left: -11px; left: 50%; }
+div.modal.default.modal-w div.modal-window { padding-right: 14px; }
+div.modal.default.modal-w div.modal-spacer,
+div.modal.default.modal-e div.modal-spacer { width: 16px; height: 23px; }
+div.modal.default.modal-w div.modal-spacer { right: 0; top: 50%; margin-top: -11px; background-position: 100% 50%; }
+div.modal.default.modal-e div.modal-window { padding-left: 14px; }
+div.modal.default.modal-e div.modal-spacer { top: 50%; margin-top: -11px; background-position: 0 50%; }
+
+div.modal.default.modal-n div.modal-window,
+div.modal.default.modal-nw div.modal-window,
+div.modal.default.modal-ne div.modal-window { padding-bottom: 14px; }
+div.modal.default.modal-n div.modal-spacer,
+div.modal.default.modal-nw div.modal-spacer,
+div.modal.default.modal-ne div.modal-spacer { bottom: 0; width: 23px; height: 16px; background-position: 50% 100%; }
+div.modal.default.modal-ne div.modal-spacer { margin-right: -11px; }
+div.modal.default.modal-nw div.modal-spacer { margin-left: -11px; }
+div.modal.default.modal-n div.modal-spacer { margin-left: -11px; left: 50%; }
+
+
+

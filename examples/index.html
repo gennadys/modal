@@ -6,18 +6,51 @@
   <link href="reset.css" media="screen" rel="stylesheet">
   <link href="../modal.css" media="screen" rel="stylesheet">
   <style>
-    body > div { margin: 0 auto; padding: 20px; width: 760px; }
+    body > div.wrapper { margin: 0 auto; padding: 20px; width: 760px; }
+    a { font-weight: bold; }
+    p { margin-bottom: 15px; }
+
+    a.gravity.modal-active { position: relative; z-index: 101; }
   </style>
 </head>
 <body>
-  <div>
-    <p>Lorem ipsum dolor sit <a class="demo1" href="#">demo 1</a> amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div class="wrapper">
+    <p>Lorem ipsum dolor sit <a class="modal" href="#content">simple modal window</a> amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore <a class="gravity south-west" href="#content">tooltip demo (south-west)</a> magna aliqua. Ut enim <a class="gravity south-east" href="#content">tooltip demo (south-east)</a> ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a class="gravity south" href="#content">tooltip demo (south)</a> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <a class="gravity west" href="#content">tooltip demo (west)</a> consequat. Duis aute irure dolor <a class="gravity east" href="#content">tooltip demo (east)</a> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>Lorem ipsum dolor sit <a class="modal" href="#content">simple modal window</a> amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore <a class="gravity north-west" href="#content">tooltip demo (north-west)</a> magna aliqua. Ut enim <a class="gravity north-east" href="#content">tooltip demo (north-east)</a> ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a class="gravity north" href="#content">tooltip demo (north)</a> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <div id="content" class="hidden">
+      <h1>Lorem ipsum dolor sit amet</h1> Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a class="modal-close" href="./">Close window</a>
+    </div>
+    
+    <div id="onload" class="hidden">
+      <h1>Modal window on load demo</h1> Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a class="modal-close" href="./">Close window</a>
+    </div>
   </div>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="../modal.js"></script>
   <script>
-    $('a.demo1').modal({ content: '<h1>Lorem ipsum dolor sit amet.</h1> Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a class="modal-close" href="./">Close window</a>' });
+    $.modal({ content: $('#onload').html(), modal: false });
+    $('a.modal').modal({ content: $('#content').html() });
+    $('a.gravity.south-west').modal({ gravity: 'sw', content: $('#content').html() });
+    $('a.gravity.south').modal({ gravity: 's', content: $('#content').html() });
+    $('a.gravity.south-east').modal({ gravity: 'se', content: $('#content').html() });
+    $('a.gravity.west').modal({ gravity: 'w', content: $('#content').html(), modal: false, overlay: false });
+    $('a.gravity.east').modal({ gravity: 'e', content: $('#content').html(), modal: false, overlay: false });
+    $('a.gravity.north-west').modal({ gravity: 'nw', content: $('#content').html() });
+    $('a.gravity.north').modal({ gravity: 'n', content: $('#content').html() });
+    $('a.gravity.north-east').modal({ gravity: 'ne', content: $('#content').html() });
   </script>
 </body>
 </html>
