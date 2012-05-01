@@ -1,11 +1,12 @@
 /**
  *  Modal window
+ *  https://github.com/gennadys/modal
  */
 (function($) {
   var defaults = {
       url: false,
       opener: false,
-      remote: true,
+      className: 'modal',
       content: '',
       data: {},
       scrollable: false,
@@ -14,8 +15,12 @@
       overlay: true,
       opacity: 0.7,
       view: 'default',
-      close: true,
-      gravity: false
+      tools: true,
+      gravity: false,
+      cancelText: 'Cancel',
+      confirmText: 'Confirm',
+      windowLocation: false,
+      beforeShow: function(){}
   };
 
   var methods = {
@@ -23,7 +28,8 @@
       if (opener) this.opener = opener;
       if (this.url === false && this.content === '') this.url = this.opener.href || false;
       if (!this.opener) this.gravity = false;
-      $(this.opener).addClass('modal-active');
+      
+      $(this.opener).addClass(this.className + '-active');
 
       if (this.$modal && this.$modal.is(':visible')) {
         this.remove();
@@ -33,6 +39,7 @@
     },
     
     success: function() {
+      this.beforeShow();
       this.$modal.show();
       this.position();
     },
@@ -47,7 +54,7 @@
                     }),
           modal   = {};
           
-      this.$modal.addClass('modal-' + this.gravity);
+      this.$modal.addClass(this.className + '-' + this.gravity);
       
       modal = { width: this.$modal.outerWidth(), height: this.$modal.outerHeight() };
       
@@ -71,11 +78,11 @@
             if (this.gravity.charAt(1) == 'w') {
                 pos.left = opener.left;
                 
-                this.$modal.find('div.modal-spacer').css({ left: opener.width / 2 });
+                this.$modal.find('div.' + this.className + '-spacer').css({ left: opener.width / 2 });
             } else {
                 pos.left = opener.left + opener.width - modal.width;
                 
-                this.$modal.find('div.modal-spacer').css({ right: opener.width / 2 });
+                this.$modal.find('div.' + this.className + '-spacer').css({ right: opener.width / 2 });
             }
         }
 
@@ -84,10 +91,12 @@
     },
 
     create: function(){
-      var self = this;
+      var self      = this,
+          template  = '',
+          $opener   = $(self.opener);
 
       if (self.gravity === false) {
-        self.$modal = $(
+        template =
           '<table class="modal modal-data ' + self.view + ( self.scrollable ? ' modal-scrollable' : '') + '">' +
             '<tr>' +
               '<td class="modal">' +
@@ -99,7 +108,7 @@
                           '<div class="modal-tools">' +
                             '<a class="modal-close" href="#close">&times;</a>' +
                           '</div>' +
-                          '<div class="modal-content container"></div>' +
+                          '<div class="modal-content partial"></div>' +
                         '</div>' +
                       '</div>' +
                     '</td>' +
@@ -107,10 +116,9 @@
                 '</table>' +
               '</td>' +
             '</tr>' +
-          '</table>'
-        ).hide();
+          '</table>';
       } else {
-        self.$modal = $(
+        template =
           '<div class="modal modal-data ' + self.view + '">' +
             '<div class="modal-spacer"></div>' +
             '<div class="modal-window">' +
@@ -118,15 +126,16 @@
                 '<div class="modal-tools">' +
                   '<a class="modal-close" href="#close">&times;</a>' +
                 '</div>' +
-                '<div class="modal-content container"></div>' +
+                '<div class="modal-content partial"></div>' +
               '</div>' +
             '</div>' +
-          '</div>'
-        ).hide();
+          '</div>';
       }
+      
+      self.$modal = $(template.split('modal').join(self.className)).hide();
 
       if (self.overlay) {
-        self.$overlay = $('<div class="modal-overlay"></div>');
+        self.$overlay = $('<div class="' + self.className + '-overlay"></div>');
         self.$overlay.css({ opacity:self.opacity }).appendTo('body');
       }
       
@@ -140,15 +149,24 @@
         $(window).bind("resize.modal", function(){ self.position(); });
       }
       
-      if (self.close) self.$modal.find('a.modal-close').show();
+      if (self.tools) self.$modal.find('div.' + self.className + '-tools').show();
 
-      self.$window = self.$modal.find('table.modal-window, div.modal-window');
-      self.$content = self.$modal.find('div.modal-content');
+      self.$window = self.$modal.find('table.' + self.className + '-window, div.' + self.className + '-window');
+      self.$content = self.$modal.find('div.' + self.className + '-content');
       
-      $(self.$modal).on('click.modal', '.modal-close', function(event){
-        self.remove();
-        event.preventDefault();
-      });
+      $(self.$modal)
+        .on('click.modal-close', '.' + self.className + '-close', function(event){
+          self.remove();
+          event.preventDefault();
+        })
+        .on('click.modal-confirm', '.' + self.className + '-confirm', function(){
+          $opener.data('confirmed', true);
+          self.remove();
+          $opener.click().data('confirmed', false);
+          event.preventDefault();
+          
+          if (self.windowLocation === true) window.location.href = self.opener.href;
+        });
       
       if (!self.modal) {
         self.docevnt = function(event){
@@ -156,10 +174,22 @@
             self.remove();
           }
         };
-        $(document).on('click.modal', self.docevnt);
+        $(document).on('click.modal-close', self.docevnt);
       }
-
-      if (self.url && self.remote) {
+      
+      if (self.content !== '') {
+        self.$content.html(self.content);
+        self.success();
+      } else if ($opener.data('confirm')) {
+        self.$content.html(
+          '<div class="' + self.className + '-message">' + $opener.data('confirm') + '</div>' +
+          '<div class="' + self.className + '-actions">' +
+            '<input type="button" value="' + self.confirmText + '" class="' + self.className + '-confirm">' +
+            '<a href="#close" class="' + self.className + '-close">' + self.cancelText + '</a>' +
+          '</div>'
+        );
+        self.success();
+      } else if (self.url) {
         $.ajax({
           type: 'get',
           url: self.url,
@@ -173,7 +203,6 @@
           }
         });
       } else {
-        self.$content.html(self.content);
         self.success();
       }
       
@@ -201,25 +230,20 @@
   };
 
   $.fn.modal = function(options) {
-    this.each(function(){
-      var self = this;
-    
-      $(document).on('click.modal', self, function(event) {
-        if (event.target === self) {
-          var $this = $(event.target),
-              modal = $this.data('modal');
-      
-          if (!modal) {
-            modal = $.extend({}, defaults, methods, options);
-            $this.data('modal', modal);
-          }
-      
-          modal.init(event.target);
+    $(document).on('click.modal', this.selector, function(event) {
+      var $this = $(event.target),
+          modal = $this.data('modal');
 
-          event.stopPropagation();
-          event.preventDefault();
+      if ($this.data('confirmed') !== true) {
+        if (!modal) {
+          modal = $.extend({}, defaults, methods, options);
+          $this.data('modal', modal);
         }
-      });
+  
+        modal.init(event.target);
+
+        event.preventDefault();
+      }
     });
     
     return this;

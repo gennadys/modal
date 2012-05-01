@@ -1,0 +1,56 @@
+
+input, select, textarea { font:normal 13px Verdana, Arial, Helvetica, sans-serif; }
+
+a.button,
+input[type=submit] {
+  display: inline-block;
+  padding: 6px 15px;
+  border: 1px solid #CCC; border-bottom-color: #BBB;
+  text-shadow: 0 1px 1px #FFF; text-decoration: none;
+  color: #333;
+  font-size: 13px;
+  line-height: normal;
+  white-space: nowrap;
+  cursor: pointer;
+  
+  background-color: #D6D6D6;
+  background-repeat: no-repeat;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#F8F8F8), to(#D6D6D6));
+  background-image: -moz-linear-gradient(top, #F8F8F8, #D6D6D6);
+  background-image: -ms-linear-gradient(top, #F8F8F8, #D6D6D6);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F8F8F8), color-stop(100%, #D6D6D6));
+  background-image: -webkit-linear-gradient(top, #F8F8F8, #D6D6D6);
+  background-image: -o-linear-gradient(top, #F8F8F8, #D6D6D6);
+  background-image: linear-gradient(top, #F8F8F8, #D6D6D6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#D6D6D6', GradientType=0);
+  
+  -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-transition: 0.1s linear all; -moz-transition: 0.1s linear all; -ms-transition: 0.1s linear all; -o-transition: 0.1s linear all; transition: 0.1s linear all;
+}
+
+a.button:hover,
+a.button:active,
+input[type=submit]:hover,
+input[type=submit]:active {
+  background-color: #DEDEDE;
+  background-repeat: no-repeat;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#FFFFFF), to(#DEDEDE));
+  background-image: -moz-linear-gradient(top, #FFFFFF, #DEDEDE);
+  background-image: -ms-linear-gradient(top, #FFFFFF, #DEDEDE);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFFFFF), color-stop(100%, #DEDEDE));
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #DEDEDE);
+  background-image: -o-linear-gradient(top, #FFFFFF, #DEDEDE);
+  background-image: linear-gradient(top, #FFFFFF, #DEDEDE);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DEDEDE', GradientType=0);
+}
+
+a.button:hover,
+input[type=submit]:hover {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+a.button:active,
+input[type=submit]:active {
+  position: relative; top: 1px; left: 1px; z-index: 1;
+}

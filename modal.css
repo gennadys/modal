@@ -6,7 +6,7 @@ table.modal td.modal { vertical-align: middle; }
 table.modal table.modal-wrapper { margin: 0 auto; }
 
 div.modal { position: absolute; z-index: 100; }
-div.modal-window div.modal-tools { position: relative; z-index: 1; }
+div.modal-window div.modal-tools { display: none; position: relative; z-index: 1; }
 div.modal-window div.modal-tools a.modal-close { position: absolute; top: 0; right: 0; z-index: 1; }
 
 /* default skin */
@@ -74,4 +74,50 @@ div.modal.default.modal-nw div.modal-spacer { margin-left: -11px; }
 div.modal.default.modal-n div.modal-spacer { margin-left: -11px; left: 50%; }
 
 
+/* custom skin */
+.modal.custom div.modal-window {
+  padding: 7px;
+  max-width: 400px;
+  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
+  background-color: rgba(0, 0, 0, .5);
+}
+.modal.custom div.modal-window > div {
+  padding: 10px;
+  border: 1px solid #333;
+  -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px;
+  background: #FFF;
+}
+.modal.custom div.modal-tools a.modal-close {
+  display: block;
+  top: -23px; right: -23px;
+  width: 30px; height: 30px;
+  background: #333 url(icons.png) no-repeat 7px 7px;
+  text-indent: -9999px;
+  font-size: 11px;
+  white-space: nowrap;
+  -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;
+}
+.modal.custom h1 {
+  margin: -10px -10px 12px; padding: 10px;
+  background: #333;
+  color: #FFF;
+  font-size: 16px; font-weight: bold;
+  -webkit-border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0;
+}
 
+
+/* confirm */
+.modal.confirm div.modal-window > div {
+  border: 2px solid #333;
+  padding: 10px;
+  width: 300px;
+  background: #FFF;
+  
+  -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+.modal.confirm div.modal-actions { padding-top: 15px; text-align: right; }
+.modal.confirm div.modal-actions a,
+.modal.confirm div.modal-actions input { margin-left: 15px; }
