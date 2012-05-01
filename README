@@ -1,17 +1,22 @@
 Modal window plugin for jQuery.
 
 $('a.modal').modal({
-  url: false,         // default anchor href
-  opener: false,      // 
-  remote: true,       // use ajax request if url defined
-  content: '',        // content html
-  data: {},           // data for ajax request
-  scrollable: false,  // 
-  scrollbar: true,    // hide document scrollbar
-  modal: true,        // modal window
-  overlay: true,      // show overlay
-  opacity: 0.7,       // overlay opacity
-  view: 'default',    // modal skin
-  close: true,        // show close button
-  gravity: false      // modal window gravity s, sw, se, w, e, n, nw, ne
+  url: false,               // default anchor href
+  opener: false,            // 
+  className: 'modal'        // modal window class name (for use with twitter bootstrap or other framework)
+  remote: true,             // use ajax request if url defined
+  content: '',              // content html
+  data: {},                 // data for ajax request
+  scrollable: false,        // 
+  scrollbar: true,          // hide document scrollbar
+  modal: true,              // modal window
+  overlay: true,            // show overlay
+  opacity: 0.7,             // overlay opacity
+  view: 'default',          // modal skin
+  close: true,              // show close button
+  gravity: false            // modal window gravity s, sw, se, w, e, n, nw, ne
+  cancelText: 'Cancel',     // button text for confirm window
+  confirmText: 'Confirm',   // button text for confirm window
+  windowLocation: false,    // use href after confirm
+  beforeShow: function(){}  // before window show callback
 });
