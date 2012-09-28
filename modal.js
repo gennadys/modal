@@ -2,6 +2,7 @@
  *  Modal window
  *  https://github.com/gennadys/modal
  */
+ 
 (function($) {
   var defaults = {
       url: false,

@@ -4,15 +4,8 @@
   <title>Modal window examples</title>
   <meta charset="utf-8">
   <link href="reset.css" media="screen" rel="stylesheet">
-  <link href="controls.css" media="screen" rel="stylesheet">
+  <link href="style.css" media="screen" rel="stylesheet">
   <link href="../modal.css" media="screen" rel="stylesheet">
-  <style>
-    body > div.wrapper { margin: 0 auto; padding: 20px; width: 760px; }
-    a { font-weight: bold; }
-    p { margin-bottom: 15px; }
-
-    a.gravity.modal-active { position: relative; z-index: 101; }
-  </style>
 </head>
 <body>
   <div class="wrapper">
@@ -39,8 +32,8 @@
     </div>
   </div>
   
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
-  <script src="../jquery-1.7.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+  <script src="../jquery-1.8.2.min.js"></script>
   <script src="../modal.js"></script>
   <script>
     $.modal({ content: $('#onload').html(), modal: false });
@@ -58,7 +51,13 @@
     $('a.confirm-script').on('click', function(){
       if ($(this).data('confirmed') === true) alert('confirmed');
     });
-    $('a.confirm-link').modal({ windowLocation: true, view: 'confirm', tools: false, confirmText: 'Leave this page', cancelText: 'I am not sure' });
+    $('a.confirm-link').modal({ 
+                                windowLocation: true, 
+                                view: 'confirm', 
+                                tools: false, 
+                                confirmText: 'Leave this page', 
+                                cancelText: 'I am not sure' 
+                              });
   </script>
 </body>
 </html>
