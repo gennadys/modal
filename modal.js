@@ -143,8 +143,8 @@
         .appendTo('body')
         .data('modal', this);
       
-      if (self.gravity === false) {
-        self.$modal.css({ top:$(window).scrollTop() });
+      if (self.gravity === false && !self.scrollable) {
+        self.$modal.css({ top: $(window).scrollTop() });
       } else {
         $(window).bind("resize.modal", function(){ self.position(); });
       }
