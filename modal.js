@@ -231,7 +231,7 @@
 
   $.fn.modal = function(options) {
     $(document).on('click.modal', this.selector, function(event) {
-      var $this = $(event.target),
+      var $this = $(this),
           modal = $this.data('modal');
 
       if ($this.data('confirmed') !== true) {
@@ -240,7 +240,7 @@
           $this.data('modal', modal);
         }
   
-        modal.init(event.target);
+        modal.init(this);
 
         event.preventDefault();
       }
